@@ -5,13 +5,14 @@ from threading import Thread
 # import MFRC522
 # from pirc522 import RFID
 import json
-import firebase_admin
-from firebase_admin import credentials
-from firebase_admin import db
+# import firebase_admin
+# from firebase_admin import credentials
+# from firebase_admin import db
 from requests.packages import urllib3
 import datetime
 from time import sleep
 import signal
+from flask import Flask, render_template
 # from firebase import firebase
 # Variable define 
 hooman = ''
@@ -234,23 +235,18 @@ class FireBase_Com:
     def TestEvent():
         ttt = db.reference('addMember/appRequest').Event.data
         print(ttt)
-    # def Callbach(event):
-    #     print('\nEvent.data = ')
-    #     print(event.data)
-    #     print('\nEvent.even_type = ')
-    #     print(event.even_type)
-    #     print('\nEvent.path = ')
-    #     print(event.path)
-# def MainThread():
-    # RFID.RFIDTask()
-    # print('Main')
-# def FaceThread():
-#     # FaceDetection.GetFace()
-#     sleep(10)
-#     print('Face')
+# --------------------------------------------- #
+# Flask Web Configuration #
+app = Flask(__name__)
+@app.route("/")
+def hello():
+    return render_template('attendance.html')
+# --------------------------------------------- #
 if __name__ == "__main__":
     print("Starting...")
-    FireBase_Com.Init()
-    FireBase_Com.TestEvent()
+    # FireBase_Com.Init()
+    # FireBase_Com.TestEvent()
     # RFID.RFIDTask()
+    app.run(host='192.168.31.223',port = 8080)
+
 
