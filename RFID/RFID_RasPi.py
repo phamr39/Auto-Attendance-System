@@ -13,10 +13,15 @@ import datetime
 from time import sleep
 import signal
 from flask import Flask, render_template
+from smbus2 import SMBus
+from mlx90614 import MLX90614
 # from firebase import firebase
 # Variable define 
 hooman = ''
 run = True
+# Init MLX90614 sensor
+bus = SMBus(1)
+MLXsensor = MLX90614(bus, address=0x5A)
 # rdr = RFID()
 # util = rdr.util()
 # util.debug = True
@@ -237,16 +242,16 @@ class FireBase_Com:
         print(ttt)
 # --------------------------------------------- #
 # Flask Web Configuration #
-app = Flask(__name__)
-@app.route("/")
-def hello():
-    return render_template('attendance.html')
+# app = Flask(__name__)
+# @app.route("/")
+# def hello():
+#     return render_template('attendance.html')
 # --------------------------------------------- #
 if __name__ == "__main__":
     print("Starting...")
     # FireBase_Com.Init()
     # FireBase_Com.TestEvent()
-    # RFID.RFIDTask()
-    app.run(host='192.168.31.223',port = 8080)
+    RFID.RFIDTask()
+    # app.run(host='192.168.31.223',port = 8080)
 
 
