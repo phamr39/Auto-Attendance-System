@@ -21,7 +21,7 @@ hooman = ''
 run = True
 # Init MLX90614 sensor
 bus = SMBus(1)
-MLXsensor = MLX90614(bus, address=0x5A)
+sensor = MLX90614(bus, address=0x5A)
 rdr = RFID()
 util = rdr.util()
 util.debug = True
