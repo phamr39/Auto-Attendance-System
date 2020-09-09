@@ -60,17 +60,17 @@ class Tools():
         txt_uid = txt_uid.replace('[','').replace(']','')
         return txt_uid
 class RFID:    
-    # def Init():
-    #     # Hook the SIGINT
-    #     GPIO.setmode(GPIO.BOARD)
-    #     signal.signal(signal.SIGINT, end_read)
-    #     # Create an object of the class MFRC522
-    #     # MIFAREReader = MFRC522.MFRC522()
-    #     run = True
-    #     rdr = RFID()
-    #     util = rdr.util()
-    #     util.debug = True
-    #     # return MIFAREReader
+    def Init():
+        # Hook the SIGINT
+        GPIO.setmode(GPIO.BOARD)
+        signal.signal(signal.SIGINT, end_read)
+        # Create an object of the class MFRC522
+        # MIFAREReader = MFRC522.MFRC522()
+        run = True
+        rdr = RFID()
+        util = rdr.util()
+        util.debug = True
+        # return MIFAREReader
     def Authen(uid = []):
         i = 0
         list_UserID = []
@@ -115,7 +115,7 @@ class RFID:
         UsrID = list_UserID[i]
         return result,UsrID
     def RFIDTask():
-        # MIFAREReader = RFID.Init()
+        MIFAREReader = RFID.Init()
         while (run == True):
             AddSig,NewUsrID,appRq = FireBase_Com.AddNew()
             # print("appRq = ",appRq)
