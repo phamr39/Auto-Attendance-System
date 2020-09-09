@@ -2,7 +2,7 @@ import os
 import threading
 from threading import Thread
 import RPi.GPIO as GPIO
-import MFRC522
+# import MFRC522
 from pirc522 import RFID
 import json
 # import firebase_admin
@@ -22,10 +22,10 @@ run = True
 # Init MLX90614 sensor
 bus = SMBus(1)
 MLXsensor = MLX90614(bus, address=0x5A)
-# rdr = RFID()
-# util = rdr.util()
-# util.debug = True
-# GPIO.setmode(GPIO.BOARD)
+rdr = RFID()
+util = rdr.util()
+util.debug = True
+GPIO.setmode(GPIO.BOARD)
 # Capture SIGINT for cleanup when the script is aborted
 def end_read(signal,frame):
     global run
