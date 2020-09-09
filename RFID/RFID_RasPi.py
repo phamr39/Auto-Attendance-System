@@ -21,8 +21,8 @@ hooman = ''
 run = True
 # -----------------------------------
 rdr = RFID()
-util = rdr.util()
-util.debug = True
+# util = rdr.util()
+# util.debug = True
 # GPIO.setmode(GPIO.BOARD)
 # Capture SIGINT for cleanup when the script is aborted
 def end_read(signal,frame):
@@ -113,7 +113,7 @@ class RFID:
         UsrID = list_UserID[i]
         return result,UsrID
     def RFIDTask():
-        MIFAREReader = RFID.Init()
+        run = True
         while (run == True):
             AddSig,NewUsrID,appRq = FireBase_Com.AddNew()
             # print("appRq = ",appRq)
@@ -247,18 +247,18 @@ class FireBase_Com:
 # --------------------------------------------- #
 if __name__ == "__main__":
     print("Starting...")
-    # FireBase_Com.Init()
+    FireBase_Com.Init()
     # FireBase_Com.TestEvent()
-    # RFID.RFIDTask()
+    RFID.RFIDTask()
     # Init MLX90614 sensor
-    while(1):
-        bus = SMBus(1)
-        sensor = MLX90614(bus, address=0x5A)
-        print('Raw data chanel 1',sensor.read_temp(reg = 0x04))
-        print('Raw data chanel 2',sensor.read_temp(reg = 0x05))
-        print('Ambient temperature',sensor.read_temp(reg = 0x06))
-        print('Object 1 temperature',sensor.read_temp(reg = 0x07))
-        print('Object 2 temperature',sensor.read_temp(reg = 0x08))
-        sleep(1)
-        bus.close()
+    # while(1):
+    #     bus = SMBus(1)
+    #     sensor = MLX90614(bus, address=0x5A)
+    #     print('Raw data chanel 1',sensor.read_temp(reg = 0x04))
+    #     print('Raw data chanel 2',sensor.read_temp(reg = 0x05))
+    #     print('Ambient temperature',sensor.read_temp(reg = 0x06))
+    #     print('Object 1 temperature',sensor.read_temp(reg = 0x07))
+    #     print('Object 2 temperature',sensor.read_temp(reg = 0x08))
+    #     sleep(1)
+    #     bus.close()
 
