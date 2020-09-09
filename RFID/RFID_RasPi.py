@@ -21,9 +21,9 @@ hooman = ''
 run = True
 # -----------------------------------
 rdr = RFID()
-# util = rdr.util()
-# util.debug = True
-# GPIO.setmode(GPIO.BOARD)
+util = rdr.util()
+util.debug = True
+GPIO.setmode(GPIO.BOARD)
 # Capture SIGINT for cleanup when the script is aborted
 def end_read(signal,frame):
     global run
@@ -113,7 +113,6 @@ class RFID:
         UsrID = list_UserID[i]
         return result,UsrID
     def RFIDTask():
-        run = True
         while (run == True):
             AddSig,NewUsrID,appRq = FireBase_Com.AddNew()
             # print("appRq = ",appRq)
