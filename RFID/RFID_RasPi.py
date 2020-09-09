@@ -252,7 +252,6 @@ if __name__ == "__main__":
     # FireBase_Com.Init()
     # FireBase_Com.TestEvent()
     # RFID.RFIDTask()
-    print (sensor.get_amb_temp())
     print (sensor.get_obj_temp())
     bus.close()
 
