@@ -268,8 +268,7 @@ def TestMLX():
     try:
         mlx.getFrame(frame)
     except ValueError:
-        # these happen, no biggie - retry
-        continue
+        print("Error")
     print("Read 2 frames in %0.2f s" % (time.monotonic() - stamp))
     for h in range(24):
         for w in range(32):
