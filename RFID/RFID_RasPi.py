@@ -92,7 +92,7 @@ class RFID:
             print(list_UserID)
             UsrID = list_UserID[i]
         except:
-            print("       ")
+            print("\nIssue")
             UsrID = ''
         i= 0
         return result,UsrID
