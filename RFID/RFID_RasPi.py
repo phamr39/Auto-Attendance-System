@@ -91,7 +91,7 @@ class RFID:
             print("\ni = ",i)
             print(list_UserID)
             UsrID = list_UserID[i]
-        except Exception as e::
+        except Exception as e:
             print(e)
             UsrID = ''
         i= 0
