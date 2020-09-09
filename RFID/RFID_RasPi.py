@@ -28,7 +28,7 @@ sensor = MLX90614(bus, address=0x5A)
 rdr = RFID()
 util = rdr.util()
 util.debug = True
-GPIO.setmode(GPIO.BOARD)
+# GPIO.setmode(GPIO.BOARD)
 # Capture SIGINT for cleanup when the script is aborted
 def end_read(signal,frame):
     global run
