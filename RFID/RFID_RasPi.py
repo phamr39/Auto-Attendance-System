@@ -249,9 +249,7 @@ class FireBase_Com:
 # --------------------------------------------- #
 if __name__ == "__main__":
     print("Starting...")
-    # FireBase_Com.Init()
+    FireBase_Com.Init()
     # FireBase_Com.TestEvent()
-    # RFID.RFIDTask()
-    print (sensor.get_obj_temp())
-    bus.close()
+    RFID.RFIDTask()
 
