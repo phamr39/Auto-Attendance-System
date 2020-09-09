@@ -253,6 +253,10 @@ if __name__ == "__main__":
     # Init MLX90614 sensor
     bus = SMBus(1)
     sensor = MLX90614(bus, address=0x5A)
-    print(sensor.read_temp(reg = 0x04))
+    print('Raw data chanel 1',sensor.read_temp(reg = 0x04))
+    print('Raw data chanel 2',sensor.read_temp(reg = 0x05))
+    print('Ambient temperature',sensor.read_temp(reg = 0x06))
+    print('Object 1 temperature',sensor.read_temp(reg = 0x07))
+    print('Object 2 temperature',sensor.read_temp(reg = 0x08))
     bus.close()
 
