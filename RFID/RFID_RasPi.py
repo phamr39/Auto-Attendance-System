@@ -264,7 +264,7 @@ def TestMLX():
     
     frame = [0] * 768
     while True:
-    stamp = time.monotonic()
+        stamp = time.monotonic()
     try:
         mlx.getFrame(frame)
     except ValueError:
