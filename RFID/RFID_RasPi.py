@@ -5,9 +5,9 @@ import RPi.GPIO as GPIO
 # import MFRC522
 from pirc522 import RFID
 import json
-# import firebase_admin
-# from firebase_admin import credentials
-# from firebase_admin import db
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import db
 from requests.packages import urllib3
 import datetime
 from time import sleep
@@ -15,7 +15,7 @@ import signal
 # from flask import Flask, render_template
 from smbus2 import SMBus
 from mlx90614 import MLX90614
-from firebase import firebase
+# from firebase import firebase
 # Variable define 
 hooman = ''
 run = True
@@ -151,9 +151,9 @@ class RFID:
                     elif (appRq == 1): #Add Card
                         print("Add new id card")
                         FireBase_Com.UpdateCardInfo(NewUsrID,Tools.GetStringFromList(uid))
-            elif (appRq == 2):
-                print("Add new Face ID")
-                FireBase_Com.UpdateFaceInfo(NewUsrID,FaceID)
+            # elif (appRq == 2):
+            #     print("Add new Face ID")
+            #     FireBase_Com.UpdateFaceInfo(NewUsrID,FaceID)
 class FaceDetection:
     def GetFace():
         print("Looking for new face...")
@@ -249,7 +249,7 @@ class FireBase_Com:
 # --------------------------------------------- #
 if __name__ == "__main__":
     print("Starting...")
-    # FireBase_Com.Init()
+    FireBase_Com.Init()
     # FireBase_Com.TestEvent()
     RFID.RFIDTask()
     # app.run(host='192.168.31.223',port = 8080)
