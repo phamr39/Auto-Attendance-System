@@ -238,6 +238,20 @@ class FireBase_Com:
     def TestEvent():
         ttt = db.reference('addMember/appRequest').Event.data
         print(ttt)
+class GetTemperature:
+    def ReadSensor():
+        # Init MLX90614 sensor
+        while(1):
+            bus = SMBus(1)
+            sensor = MLX90614(bus, address=0x5A)
+            print('Raw data chanel 1',sensor.read_temp(reg = 0x04))
+            print('Raw data chanel 2',sensor.read_temp(reg = 0x05))
+            print('Ambient temperature',sensor.read_temp(reg = 0x06))
+            print('Object 1 temperature',sensor.read_temp(reg = 0x07))
+            print('Object 2 temperature',sensor.read_temp(reg = 0x08))
+            sleep(1)
+            bus.close()
+
 # --------------------------------------------- #
 # Flask Web Configuration #
 # app = Flask(__name__)
@@ -247,18 +261,7 @@ class FireBase_Com:
 # --------------------------------------------- #
 if __name__ == "__main__":
     print("Starting...")
-    FireBase_Com.Init()
+    # FireBase_Com.Init()
     # FireBase_Com.TestEvent()
-    RFID.RFIDTask()
-    # Init MLX90614 sensor
-    # while(1):
-    #     bus = SMBus(1)
-    #     sensor = MLX90614(bus, address=0x5A)
-    #     print('Raw data chanel 1',sensor.read_temp(reg = 0x04))
-    #     print('Raw data chanel 2',sensor.read_temp(reg = 0x05))
-    #     print('Ambient temperature',sensor.read_temp(reg = 0x06))
-    #     print('Object 1 temperature',sensor.read_temp(reg = 0x07))
-    #     print('Object 2 temperature',sensor.read_temp(reg = 0x08))
-    #     sleep(1)
-    #     bus.close()
+    # RFID.RFIDTask()
 
