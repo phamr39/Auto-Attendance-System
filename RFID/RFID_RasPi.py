@@ -239,18 +239,23 @@ class FireBase_Com:
         ttt = db.reference('addMember/appRequest').Event.data
         print(ttt)
 class GetTemperature:
-    def ReadSensor():
+    def ReadSensor(sensor):
         # Init MLX90614 sensor
-        while(1):
-            bus = SMBus(1)
-            sensor = MLX90614(bus, address=0x5A)
-            print('Raw data chanel 1',sensor.read_temp(reg = 0x04))
-            print('Raw data chanel 2',sensor.read_temp(reg = 0x05))
-            print('Ambient temperature',sensor.read_temp(reg = 0x06))
-            print('Object 1 temperature',sensor.read_temp(reg = 0x07))
-            print('Object 2 temperature',sensor.read_temp(reg = 0x08))
-            sleep(1)
-            bus.close()
+        # print('Raw data chanel 1',sensor.read_temp(reg = 0x04))
+        # print('Raw data chanel 2',sensor.read_temp(reg = 0x05))
+        # print('Ambient temperature',sensor.read_temp(reg = 0x06))
+        # print('Object 1 temperature',sensor.read_temp(reg = 0x07))
+        # print('Object 2 temperature',sensor.read_temp(reg = 0x08))
+        AmbTemp = sensor.read_temp(reg = 0x06)
+        ObjTemp = sensor.read_temp(reg = 0x07)
+        sleep(0.01)
+        return AmbTemp,ObjTemp
+    def run():
+        bus = SMBus(1)
+        sensor = MLX90614(bus, address=0x5A)
+        for (i in range (0,10)):
+            AmbTemp,ObjTemp = GetTemperature.ReadSensor(sensor)
+        bus.close()
 
 # --------------------------------------------- #
 # Flask Web Configuration #
