@@ -264,4 +264,5 @@ if __name__ == "__main__":
     # FireBase_Com.Init()
     # FireBase_Com.TestEvent()
     # RFID.RFIDTask()
+    GetTemperature.ReadSensor()
 
