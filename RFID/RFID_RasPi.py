@@ -250,13 +250,47 @@ class GetTemperature:
         ObjTemp = sensor.read_temp(reg = 0x07)
         sleep(0.01)
         return AmbTemp,ObjTemp
+    def EstimateRealObjectTemp(AmbientTemp,ObjectTemp):
+        AmbReferList = [18.1,20.7,23.5,27.5,34.0]
+        ObjectReferList= [29.5,30.2,31.5,33.5,34.6]
+        DeltaTemp = []
+        for i in range (0,len(AmbReferList)-1):
+            dt = 36.5 - ObjectReferList[i]
+            DeltaTemp.append(dt)
+        if (ObjectTemp >= 37.5 and (AmbientTemp < 38 or AmbientTemp >= 35)):
+            EstimatedTemp = ObjectTemp
+        elif (AmbientTemp < 18.1 or AmbientTemp >= 38):
+            EstimatedTemp = 'Out of Range, The Ambient Temperature is too hot or too cold'
+        elif (ObjectTemp < 29.5):
+            EstimatedTemp = ObjectTemp
+        else:
+            for m in range(0, len(AmbReferList)-1):
+                UpperLimit = (AmbReferList[m+1] - AmbReferList[m])/2 + AmbReferList[m]
+                try: 
+                    if (AmbientTemp >= AmbReferList[m] and AmbientTemp < UpperLimit):
+                        EstimatedTemp = ObjectTemp + DeltaTemp[m]
+                except:
+                    EstimatedTemp = DeltaTemp[len(DeltaTemp)-1] + ObjectTemp
+        return EstimatedTemp
     def run():
         bus = SMBus(1)
+        ListAmbTemp = []
+        ListObjTemp = []
         sensor = MLX90614(bus, address=0x5A)
+        SumAmbTemp = 0
+        SumObjTemp = 0
         for (i in range (0,10)):
             AmbTemp,ObjTemp = GetTemperature.ReadSensor(sensor)
+            SumAmbTemp = SumAmbTemp + AmbTemp
+            SumObjTemp = SumObjTemp + ObjTemp
+        # Get average value
+        AvgAmbTemp = SumAmbTemp/10
+        AvgObjTemp = SumObjTemp/10
+        print("\nAmbient Temperature: ", AvgAmbTemp)
+        # print("\nObject Temperature: ", AvgObjTemp)
+        EstimatedTemp = GetTemperature.EstimateRealObjectTemp(AvgAmbTemp,AvgObjTemp)
+        print("\nYour Temperature is ",EstimatedTemp,"*C")
         bus.close()
-
 # --------------------------------------------- #
 # Flask Web Configuration #
 # app = Flask(__name__)
@@ -269,5 +303,7 @@ if __name__ == "__main__":
     # FireBase_Com.Init()
     # FireBase_Com.TestEvent()
     # RFID.RFIDTask()
-    GetTemperature.ReadSensor()
+    while(1):
+        GetTemperature.run()
+        sleep(1)
 
