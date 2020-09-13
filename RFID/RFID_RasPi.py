@@ -260,12 +260,14 @@ class GetTemperature:
             DeltaTemp.append(dt)
         if ((AmbientTemp < 38 or AmbientTemp >= 35)):
             EstimatedTemp = ObjectTemp
+            print("\nDebug line -1111")
         elif (AmbientTemp < 18.1 or AmbientTemp >= 38):
             # EstimatedTemp = 'Out of Range, The Ambient Temperature is too hot or too cold'
             EstimatedTemp = -1000
         else:
             if (ObjectTemp < 29.5):
                 EstimatedTemp = ObjectTemp
+                print("\nDebug line 0000")
             else:
                 print("\nDebug line 1111")
                 for m in range(0, len(AmbReferList)-1):
