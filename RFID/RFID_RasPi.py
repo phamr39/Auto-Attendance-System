@@ -319,11 +319,10 @@ class GetTemperature:
         # Get average value
         AvgAmbTemp = SumAmbTemp/10
         AvgObjTemp = SumObjTemp/10
-        print(type(AvgAmbTemp))
-        print("\nAmbient Temperature: ", round(AvgAmbTemp,2),"*C")
+        print("\nAmbient Temperature: ", round(AvgAmbTemp,1),"*C")
         # print("\nObject Temperature: ", AvgObjTemp)
-        EstimatedTemp = GetTemperature.EstimateRealObjectTemp(AvgAmbTemp,AvgObjTemp)
-        print("\nObject Temperature: ",round(EstimatedTemp,2),"*C")
+        EstimatedTemp = round(GetTemperature.EstimateRealObjectTemp(AvgAmbTemp,AvgObjTemp),1)
+        print("\nObject Temperature: ",EstimatedTemp,"*C")
         bus.close()
 if __name__ == "__main__":
     print("Starting...")
