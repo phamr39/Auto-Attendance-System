@@ -320,7 +320,7 @@ class GetTemperature:
             if (ErrorIndex >= 3):
                 print("\nOut of Measurement Range, the Ambient Temperature is too hot or too cold")
         else:
-            print("\nObject Temperature: ",round(EstimatedTemp,1),"*C")
+            print("\nObject Temperature: ",round(EstimatedTemp-0.3,1),"*C")
             ErrorIndex = 0
         bus.close()
 if __name__ == "__main__":
