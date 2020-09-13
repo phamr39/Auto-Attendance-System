@@ -283,10 +283,12 @@ class GetTemperature:
                     if (AmbientTemp >= AmbReferList[m] and AmbientTemp < UpperLimit):
                         UpperLimit = tmpUpperLimit
                         RangeIndex = m
+                        print("\nRangeIndex = m = ",m)
                         break
                 try: 
                     print("\nDebug line try")
                     EstimatedTemp = ObjectTemp + DeltaTemp[RangeIndex]
+                    print("\nRangeIndex = ",RangeIndex)
                     print("\n Delta Temp = ",DeltaTemp[RangeIndex])
                     return EstimatedTemp
                 except:
