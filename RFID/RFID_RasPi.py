@@ -251,7 +251,7 @@ class GetTemperature:
             dt = 36.5 - ObjectReferList[i]
             DeltaTemp.append(dt)
         if (AmbientTemp < 38 and AmbientTemp >= 35):
-            EstimatedTemp = ObjectTemp - 0.5
+            EstimatedTemp = ObjectTemp
             # print("\nDebug line -1111")
             return EstimatedTemp
         elif (AmbientTemp < 18.1 or AmbientTemp >= 38):
@@ -260,11 +260,11 @@ class GetTemperature:
             return EstimatedTemp
         else:
             if (ObjectTemp < 29.5):
-                EstimatedTemp = ObjectTemp - 0.5
+                EstimatedTemp = ObjectTemp
                 # print("\nDebug line 0000")
                 return EstimatedTemp
             elif (ObjectTemp >= 37.5):
-                EstimatedTemp = ObjectTemp - 0.5
+                EstimatedTemp = ObjectTemp
                 return EstimatedTemp
             else:
                 # print("\nDebug line 1111")
@@ -285,13 +285,13 @@ class GetTemperature:
                         RangeIndex = len(AmbReferList)
                 try: 
                     # print("\nDebug line try")
-                    EstimatedTemp = ObjectTemp + DeltaTemp[RangeIndex] - 0.5
+                    EstimatedTemp = ObjectTemp + DeltaTemp[RangeIndex]
                     # print("\nRangeIndex = ",RangeIndex)
                     # print("\n Delta Temp = ",DeltaTemp[RangeIndex])
                     return EstimatedTemp
                 except:
                     # print("\nDebug line 3333")
-                    EstimatedTemp = DeltaTemp[len(DeltaTemp)-1] + ObjectTemp - 0.5
+                    EstimatedTemp = DeltaTemp[len(DeltaTemp)-1] + ObjectTemp
                     return EstimatedTemp
         return EstimatedTemp
     def run():
