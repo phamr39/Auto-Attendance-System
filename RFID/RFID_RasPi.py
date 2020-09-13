@@ -325,7 +325,7 @@ class GetTemperature:
         ErrorIndex = 0
         if (EstimatedTemp == -1000):
             ErrorIndex = ErrorIndex + 1
-            if (ErrorIndex >= 3)
+            if (ErrorIndex >= 3):
                 print("\nOut of Measurement Range, the Ambient Temperature is too hot or too cold")
         else:
             print("\nObject Temperature: ",round(EstimatedTemp,1),"*C")
