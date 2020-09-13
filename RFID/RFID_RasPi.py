@@ -258,15 +258,18 @@ class GetTemperature:
         for i in range (0,len(AmbReferList)-1):
             dt = 36.5 - ObjectReferList[i]
             DeltaTemp.append(dt)
-        if ((AmbientTemp < 38 and AmbientTemp >= 35)):
+        if (AmbientTemp < 38 and AmbientTemp >= 35):
             EstimatedTemp = ObjectTemp
             print("\nDebug line -1111")
+            return EstimatedTemp
         elif (AmbientTemp < 18.1 or AmbientTemp >= 38):
             # EstimatedTemp = 'Out of Range, The Ambient Temperature is too hot or too cold'
             EstimatedTemp = -1000
+            return EstimatedTemp
         else:
             if (ObjectTemp < 29.5):
                 EstimatedTemp = ObjectTemp
+                return EstimatedTemp
                 print("\nDebug line 0000")
             else:
                 print("\nDebug line 1111")
@@ -277,9 +280,11 @@ class GetTemperature:
                         if (AmbientTemp >= AmbReferList[m] and AmbientTemp < UpperLimit):
                             EstimatedTemp = ObjectTemp + DeltaTemp[m]
                             print("\n Delta Temp = ",DeltaTemp[m])
+                            return EstimatedTemp
                     except:
                         print("\nDebug line 3333")
                         EstimatedTemp = DeltaTemp[len(DeltaTemp)-1] + ObjectTemp
+                        return EstimatedTemp
         return EstimatedTemp
     def run():
         bus = SMBus(1)
