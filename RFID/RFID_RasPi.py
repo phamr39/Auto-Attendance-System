@@ -254,6 +254,7 @@ class GetTemperature:
         AmbReferList = [18.1,20.7,23.5,27.5,34.0]
         ObjectReferList= [29.5,30.2,31.5,33.5,34.6]
         DeltaTemp = []
+        EstimatedTemp = 37
         for i in range (0,len(AmbReferList)-1):
             dt = 36.5 - ObjectReferList[i]
             DeltaTemp.append(dt)
