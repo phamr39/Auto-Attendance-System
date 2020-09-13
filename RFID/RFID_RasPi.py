@@ -298,7 +298,7 @@ class GetTemperature:
                     # print("\n Delta Temp = ",DeltaTemp[RangeIndex])
                     return EstimatedTemp
                 except:
-                    print("\nDebug line 3333")
+                    # print("\nDebug line 3333")
                     EstimatedTemp = DeltaTemp[len(DeltaTemp)-1] + ObjectTemp - 0.5
                     return EstimatedTemp
         return EstimatedTemp
@@ -310,8 +310,8 @@ class GetTemperature:
         SumAmbTemp = 0
         SumObjTemp = 0
         AmbTemp,ObjTemp = GetTemperature.ReadSensor(sensor)
-        print("\nRaw Ambients ",AmbTemp)
-        print("\nRaw Object ",ObjTemp)
+        # print("\nRaw Ambients ",AmbTemp)
+        # print("\nRaw Object ",ObjTemp)
         for i in range(0,10):
             AmbTemp,ObjTemp = GetTemperature.ReadSensor(sensor)
             SumAmbTemp = SumAmbTemp + AmbTemp
