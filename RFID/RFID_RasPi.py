@@ -254,7 +254,7 @@ class GetTemperature:
         AmbReferList = [18.1,20.7,23.5,27.5,34.0]
         ObjectReferList= [29.5,30.2,31.5,33.5,34.6]
         DeltaTemp = []
-        EstimatedTemp = 37
+        EstimatedTemp = 0
         for i in range (0,len(AmbReferList)-1):
             dt = 36.5 - ObjectReferList[i]
             DeltaTemp.append(dt)
@@ -264,7 +264,7 @@ class GetTemperature:
             EstimatedTemp = 'Out of Range, The Ambient Temperature is too hot or too cold'
         elif (ObjectTemp < 29.5):
             EstimatedTemp = ObjectTemp
-        else:
+        elif (AmbientTemp >= 18.1 and AmbientTemp < 35):
             for m in range(0, len(AmbReferList)-1):
                 UpperLimit = (AmbReferList[m+1] - AmbReferList[m])/2 + AmbReferList[m]
                 try: 
@@ -272,6 +272,8 @@ class GetTemperature:
                         EstimatedTemp = ObjectTemp + DeltaTemp[m]
                 except:
                     EstimatedTemp = DeltaTemp[len(DeltaTemp)-1] + ObjectTemp
+        else:
+            EstimatedTemp = 37
         return EstimatedTemp
     def run():
         bus = SMBus(1)
@@ -287,10 +289,10 @@ class GetTemperature:
         # Get average value
         AvgAmbTemp = SumAmbTemp/10
         AvgObjTemp = SumObjTemp/10
-        print("\nAmbient Temperature: ", AvgAmbTemp)
+        print("\nAmbient Temperature: ", AvgAmbTemp,"*C")
         # print("\nObject Temperature: ", AvgObjTemp)
         EstimatedTemp = GetTemperature.EstimateRealObjectTemp(AvgAmbTemp,AvgObjTemp)
-        print("\nYour Temperature is ",EstimatedTemp,"*C")
+        print("\nYour Temperature: ",EstimatedTemp,"*C")
         bus.close()
 # --------------------------------------------- #
 # Flask Web Configuration #
