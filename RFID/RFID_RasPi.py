@@ -279,15 +279,18 @@ class GetTemperature:
                 UpperLimit = 0
                 RangeIndex = 0
                 for m in range(0, len(AmbReferList)):
-                    tmpUpperLimit = (AmbReferList[m+1] - AmbReferList[m])/2 + AmbReferList[m]
-                    print("\ntmpUpperLimit = ",tmpUpperLimit)
-                    print("\nAmbientTemp = ",AmbientTemp)
-                    print("\nAmbReferList[m] = ",AmbReferList[m])
-                    if (AmbientTemp >= AmbReferList[m] and AmbientTemp < UpperLimit):
-                        UpperLimit = tmpUpperLimit
-                        RangeIndex = m
-                        print("\nRangeIndex = m = ",m)
-                        break
+                    try:
+                        tmpUpperLimit = (AmbReferList[m+1] - AmbReferList[m])/2 + AmbReferList[m]
+                        print("\ntmpUpperLimit = ",tmpUpperLimit)
+                        print("\nAmbientTemp = ",AmbientTemp)
+                        print("\nAmbReferList[m] = ",AmbReferList[m])
+                        if (AmbientTemp >= AmbReferList[m] and AmbientTemp < UpperLimit):
+                            UpperLimit = tmpUpperLimit
+                            RangeIndex = m
+                            print("\nRangeIndex = m = ",m)
+                            break
+                    except IndexError:
+                        RangeIndex = len(AmbReferList)
                 try: 
                     print("\nDebug line try")
                     EstimatedTemp = ObjectTemp + DeltaTemp[RangeIndex]
