@@ -271,22 +271,28 @@ class GetTemperature:
                 EstimatedTemp = ObjectTemp
                 print("\nDebug line 0000")
                 return EstimatedTemp
+            elif (ObjectTemp >= 37.5):
+                EstimatedTemp = ObjectTemp
+                return EstimatedTemp
             else:
                 print("\nDebug line 1111")
+                UpperLimit = 0
+                RangeIndex = 0
                 for m in range(0, len(AmbReferList)-1):
-                    UpperLimit = (AmbReferList[m+1] - AmbReferList[m])/2 + AmbReferList[m]
-                    print("\nDebug line 2222")
-                    print("\nUpper limit = ",UpperLimit)
-                    try: 
-                        print("\nDebug line try")
-                        if (AmbientTemp >= AmbReferList[m] and AmbientTemp < UpperLimit):
-                            EstimatedTemp = ObjectTemp + DeltaTemp[m]
-                            print("\n Delta Temp = ",DeltaTemp[m])
-                            return EstimatedTemp
-                    except:
-                        print("\nDebug line 3333")
-                        EstimatedTemp = DeltaTemp[len(DeltaTemp)-1] + ObjectTemp
-                        return EstimatedTemp
+                    tmpUpperLimit = (AmbReferList[m+1] - AmbReferList[m])/2 + AmbReferList[m]
+                    if (AmbientTemp >= AmbReferList[m] and AmbientTemp < UpperLimit):
+                        UpperLimit = tmpUpperLimit
+                        RangeIndex = m
+                        break
+                try: 
+                    print("\nDebug line try")
+                    EstimatedTemp = ObjectTemp + DeltaTemp[RangeIndex]
+                    print("\n Delta Temp = ",DeltaTemp[RangeIndex])
+                    return EstimatedTemp
+                except:
+                    print("\nDebug line 3333")
+                    EstimatedTemp = DeltaTemp[len(DeltaTemp)-1] + ObjectTemp
+                    return EstimatedTemp
         return EstimatedTemp
     def run():
         bus = SMBus(1)
