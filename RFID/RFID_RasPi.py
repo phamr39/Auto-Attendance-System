@@ -287,6 +287,7 @@ class GetTemperature:
         # Get average value
         AvgAmbTemp = SumAmbTemp/10
         AvgObjTemp = SumObjTemp/10
+        print(type(AvgAmbTemp))
         print("\nAmbient Temperature: ", AvgAmbTemp,"*C")
         # print("\nObject Temperature: ", AvgObjTemp)
         EstimatedTemp = GetTemperature.EstimateRealObjectTemp(AvgAmbTemp,AvgObjTemp)
