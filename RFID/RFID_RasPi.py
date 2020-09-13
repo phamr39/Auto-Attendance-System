@@ -258,7 +258,7 @@ class GetTemperature:
         for i in range (0,len(AmbReferList)-1):
             dt = 36.5 - ObjectReferList[i]
             DeltaTemp.append(dt)
-        if ((AmbientTemp < 38 or AmbientTemp >= 35)):
+        if ((AmbientTemp < 38 and AmbientTemp >= 35)):
             EstimatedTemp = ObjectTemp
             print("\nDebug line -1111")
         elif (AmbientTemp < 18.1 or AmbientTemp >= 38):
