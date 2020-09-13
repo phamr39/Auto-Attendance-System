@@ -333,8 +333,7 @@ class GetTemperature:
         bus.close()
 if __name__ == "__main__":
     print("Starting...")
-    # FireBase_Com.Init()
-    # FireBase_Com.TestEvent()
+    FireBase_Com.Init()
     RFID.RFIDTask()
     # while(1):
     #     GetTemperature.run()
