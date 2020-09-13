@@ -280,6 +280,9 @@ class GetTemperature:
                 RangeIndex = 0
                 for m in range(0, len(AmbReferList)-1):
                     tmpUpperLimit = (AmbReferList[m+1] - AmbReferList[m])/2 + AmbReferList[m]
+                    print("\ntmpUpperLimit = ",tmpUpperLimit)
+                    print("\nAmbientTemp = ",AmbientTemp)
+                    print("\nAmbReferList[m] = ",AmbReferList[m])
                     if (AmbientTemp >= AmbReferList[m] and AmbientTemp < UpperLimit):
                         UpperLimit = tmpUpperLimit
                         RangeIndex = m
