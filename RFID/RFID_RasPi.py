@@ -279,7 +279,7 @@ class GetTemperature:
         sensor = MLX90614(bus, address=0x5A)
         SumAmbTemp = 0
         SumObjTemp = 0
-        for (i in range (0,10)):
+        for i in range(0,10):
             AmbTemp,ObjTemp = GetTemperature.ReadSensor(sensor)
             SumAmbTemp = SumAmbTemp + AmbTemp
             SumObjTemp = SumObjTemp + ObjTemp
