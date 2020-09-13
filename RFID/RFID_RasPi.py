@@ -152,14 +152,6 @@ class RFID:
             # elif (appRq == 2):
             #     print("Add new Face ID")
             #     FireBase_Com.UpdateFaceInfo(NewUsrID,FaceID)
-class FaceDetection:
-    def GetFace():
-        print("Looking for new face...")
-        Sig,FaceID = Tools.ReadIMGFile('path')
-        while(1):
-            result,UsrID = RFID.AuthenFace(FaceID)
-            if(result == 1):
-                FireBase_Com(result,UsrID)
 class FireBase_Com:
     def Init():
         # cred = credentials.Certificate("test-firebase-7a605-firebase-adminsdk-ge9h3-e2a3245f8b.json")
@@ -333,9 +325,9 @@ class GetTemperature:
         bus.close()
 if __name__ == "__main__":
     print("Starting...")
-    FireBase_Com.Init()
-    RFID.RFIDTask()
-    # while(1):
-    #     GetTemperature.run()
-    #     sleep(1)
+    # FireBase_Com.Init()
+    # RFID.RFIDTask()
+    while(1):
+        GetTemperature.run()
+        sleep(1)
 
