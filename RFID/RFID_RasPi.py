@@ -269,8 +269,8 @@ class GetTemperature:
         else:
             if (ObjectTemp < 29.5):
                 EstimatedTemp = ObjectTemp
-                return EstimatedTemp
                 print("\nDebug line 0000")
+                return EstimatedTemp
             else:
                 print("\nDebug line 1111")
                 for m in range(0, len(AmbReferList)-1):
