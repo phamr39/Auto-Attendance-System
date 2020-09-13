@@ -263,7 +263,7 @@ class GetTemperature:
             # print("\nDebug line -1111")
             return EstimatedTemp
         elif (AmbientTemp < 18.1 or AmbientTemp >= 38):
-            EstimatedTemp = 'Out of Range, The Ambient Temperature is too hot or too cold'
+            EstimatedTemp = -1000
             # EstimatedTemp = -1000
             return EstimatedTemp
         else:
@@ -321,8 +321,15 @@ class GetTemperature:
         AvgObjTemp = SumObjTemp/10
         print("\nAmbient Temperature: ", round(AvgAmbTemp,1),"*C")
         # print("\nObject Temperature: ", AvgObjTemp)
-        EstimatedTemp = round(GetTemperature.EstimateRealObjectTemp(AvgAmbTemp,AvgObjTemp),1)
-        print("\nObject Temperature: ",EstimatedTemp,"*C")
+        EstimatedTemp = GetTemperature.EstimateRealObjectTemp(AvgAmbTemp,AvgObjTemp)
+        ErrorIndex = 0
+        if (EstimatedTemp == -1000):
+            ErrorIndex = ErrorIndex + 1
+            if (ErrorIndex >= 3)
+                print("\nOut of Measurement Range, the Ambient Temperature is too hot or too cold")
+        else:
+            print("\nObject Temperature: ",round(EstimatedTemp,1),"*C")
+            ErrorIndex = 0
         bus.close()
 if __name__ == "__main__":
     print("Starting...")
