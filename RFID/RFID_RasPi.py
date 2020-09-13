@@ -267,13 +267,16 @@ class GetTemperature:
             if (ObjectTemp < 29.5):
                 EstimatedTemp = ObjectTemp
             else:
+                print("\nDebug line 1111")
                 for m in range(0, len(AmbReferList)-1):
                     UpperLimit = (AmbReferList[m+1] - AmbReferList[m])/2 + AmbReferList[m]
+                    print("\nDebug line 2222")
                     try: 
                         if (AmbientTemp >= AmbReferList[m] and AmbientTemp < UpperLimit):
                             EstimatedTemp = ObjectTemp + DeltaTemp[m]
-                            print(DeltaTemp[m])
+                            print("\n Delta Temp = ",DeltaTemp[m])
                     except:
+                        print("\nDebug line 3333")
                         EstimatedTemp = DeltaTemp[len(DeltaTemp)-1] + ObjectTemp
         return EstimatedTemp
     def run():
