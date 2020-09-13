@@ -259,47 +259,47 @@ class GetTemperature:
             dt = 36.5 - ObjectReferList[i]
             DeltaTemp.append(dt)
         if (AmbientTemp < 38 and AmbientTemp >= 35):
-            EstimatedTemp = ObjectTemp
-            print("\nDebug line -1111")
+            EstimatedTemp = ObjectTemp - 0.5
+            # print("\nDebug line -1111")
             return EstimatedTemp
         elif (AmbientTemp < 18.1 or AmbientTemp >= 38):
-            # EstimatedTemp = 'Out of Range, The Ambient Temperature is too hot or too cold'
-            EstimatedTemp = -1000
+            EstimatedTemp = 'Out of Range, The Ambient Temperature is too hot or too cold'
+            # EstimatedTemp = -1000
             return EstimatedTemp
         else:
             if (ObjectTemp < 29.5):
-                EstimatedTemp = ObjectTemp
-                print("\nDebug line 0000")
+                EstimatedTemp = ObjectTemp - 0.5
+                # print("\nDebug line 0000")
                 return EstimatedTemp
             elif (ObjectTemp >= 37.5):
-                EstimatedTemp = ObjectTemp
+                EstimatedTemp = ObjectTemp - 0.5
                 return EstimatedTemp
             else:
-                print("\nDebug line 1111")
+                # print("\nDebug line 1111")
                 UpperLimit = 0
                 RangeIndex = 0
                 for m in range(0, len(AmbReferList)):
                     try:
                         tmpUpperLimit = (AmbReferList[m+1] - AmbReferList[m])/2 + AmbReferList[m]
-                        print("\ntmpUpperLimit = ",tmpUpperLimit)
-                        print("\nAmbientTemp = ",AmbientTemp)
-                        print("\nAmbReferList[m] = ",AmbReferList[m])
+                        # print("\ntmpUpperLimit = ",tmpUpperLimit)
+                        # print("\nAmbientTemp = ",AmbientTemp)
+                        # print("\nAmbReferList[m] = ",AmbReferList[m])
                         if (AmbientTemp >= AmbReferList[m] and AmbientTemp < UpperLimit):
                             UpperLimit = tmpUpperLimit
                             RangeIndex = m
-                            print("\nRangeIndex = m = ",m)
+                            # print("\nRangeIndex = m = ",m)
                             break
                     except IndexError:
                         RangeIndex = len(AmbReferList)
                 try: 
-                    print("\nDebug line try")
-                    EstimatedTemp = ObjectTemp + DeltaTemp[RangeIndex]
-                    print("\nRangeIndex = ",RangeIndex)
-                    print("\n Delta Temp = ",DeltaTemp[RangeIndex])
+                    # print("\nDebug line try")
+                    EstimatedTemp = ObjectTemp + DeltaTemp[RangeIndex] - 0.5
+                    # print("\nRangeIndex = ",RangeIndex)
+                    # print("\n Delta Temp = ",DeltaTemp[RangeIndex])
                     return EstimatedTemp
                 except:
                     print("\nDebug line 3333")
-                    EstimatedTemp = DeltaTemp[len(DeltaTemp)-1] + ObjectTemp
+                    EstimatedTemp = DeltaTemp[len(DeltaTemp)-1] + ObjectTemp - 0.5
                     return EstimatedTemp
         return EstimatedTemp
     def run():
@@ -325,13 +325,6 @@ class GetTemperature:
         EstimatedTemp = GetTemperature.EstimateRealObjectTemp(AvgAmbTemp,AvgObjTemp)
         print("\nYour Temperature: ",EstimatedTemp,"*C")
         bus.close()
-# --------------------------------------------- #
-# Flask Web Configuration #
-# app = Flask(__name__)
-# @app.route("/")
-# def hello():
-#     return render_template('attendance.html')
-# --------------------------------------------- #
 if __name__ == "__main__":
     print("Starting...")
     # FireBase_Com.Init()
