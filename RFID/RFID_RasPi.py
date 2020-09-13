@@ -272,6 +272,7 @@ class GetTemperature:
                     try: 
                         if (AmbientTemp >= AmbReferList[m] and AmbientTemp < UpperLimit):
                             EstimatedTemp = ObjectTemp + DeltaTemp[m]
+                            print(DeltaTemp[m])
                     except:
                         EstimatedTemp = DeltaTemp[len(DeltaTemp)-1] + ObjectTemp
         return EstimatedTemp
@@ -283,8 +284,8 @@ class GetTemperature:
         SumAmbTemp = 0
         SumObjTemp = 0
         AmbTemp,ObjTemp = GetTemperature.ReadSensor(sensor)
-        print(type(AmbTemp))
-        print(type(ObjTemp))
+        print("\nRaw Ambients ",AmbTemp)
+        print("\nRaw Object ",ObjTemp)
         for i in range(0,10):
             AmbTemp,ObjTemp = GetTemperature.ReadSensor(sensor)
             SumAmbTemp = SumAmbTemp + AmbTemp
