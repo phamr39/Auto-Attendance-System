@@ -276,7 +276,7 @@ class GetTemperature:
                 for m in range(0, len(AmbReferList)-1):
                     UpperLimit = (AmbReferList[m+1] - AmbReferList[m])/2 + AmbReferList[m]
                     print("\nDebug line 2222")
-                    print("\nUpper limit = " UpperLimit)
+                    print("\nUpper limit = ",UpperLimit)
                     try: 
                         print("\nDebug line try")
                         if (AmbientTemp >= AmbReferList[m] and AmbientTemp < UpperLimit):
