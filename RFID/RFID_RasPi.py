@@ -278,7 +278,7 @@ class GetTemperature:
                 print("\nDebug line 1111")
                 UpperLimit = 0
                 RangeIndex = 0
-                for m in range(0, len(AmbReferList)-1):
+                for m in range(0, len(AmbReferList)):
                     tmpUpperLimit = (AmbReferList[m+1] - AmbReferList[m])/2 + AmbReferList[m]
                     print("\ntmpUpperLimit = ",tmpUpperLimit)
                     print("\nAmbientTemp = ",AmbientTemp)
