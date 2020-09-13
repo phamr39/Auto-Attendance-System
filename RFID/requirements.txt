@@ -1,2 +1,7 @@
-RPi.GPIO==0.6.3
--e git+https://github.com/lthiery/SPI-Py.git#egg=spi-pi
+firebase-admin 4.3.0
+pi-rc522 2.2.1
+RPi.GPIO
+requests
+signals 0.0.2
+smbus2 0.3.0
+PyMLX90614 0.0.3
